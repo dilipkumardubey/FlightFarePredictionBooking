@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div>
+	 <table>
+		<tbody>
+			<td>SELECT BANK</td>
+			<td><select id="bank" name="bank"></select></td>
+		</tbody>
+		<tbody>
+			<td>AMOUNT</td>
+			<td><input type="number" name="amount" id="amount" value="{{ amount }}"></td>
+		</tbody>
+
+	</table> 
+
+	<button onclick="check_payment('{{ amount }}');">PAY</button>
+	
+	<script type="text/javascript">
+		print_bank('bank');
+		
+		// Function to continous monitoring of payment status. 
+		// Redirects to thanks page when payment_status is PAID
+		const interval = setInterval(function() {
+		   // method to be executed;
+		   $.ajax({
+		   	type: "POST",
+		   	url : "check_payment_status",
+		   	success : function(response) {
+		   		var status = response.payment_status;
+		   		if (status=="PAID"){
+		   			window.location.href = response.route;
+		   		}
+		   	},
+		   	error : function(error) {
+		   		console.log(error);
+		   	}
+		   })
+		 }, 2000);
+	</script>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% block head %}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{% block title %}-Flight Fare Prediction{% endblock %}</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    	<script src="js/bootstrap.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+		
+		{% endblock %}
+	</head>
+	<body>
+		<table>
+		<tr>
+			<td style="width:90%; height: 100px;">
+				<div id="banner">
+					<h1>Flight Fare Prediction & Booking App</h1>
+					<p style="color: blue;">Easy way to predict & book your ticket</p>
+				</div>
+			</td>
+
+			<td><img src="/static/media/company_logo.jpg" height="100px"></td>
+		</tr>
+	</table>
+		
+
+		<div id="description">
+			<p>This web application uses Supervision Machine Learning to predict flight fare on Kaggel dataset which is available on <a href="https://www.kaggle.com/datasets/kirtichauhan11/flight-fare-prediction">here</a>.</p>
+			<p>ML model is first trained on above dataset. </p>
+		</div>
+
+		{% block content %}
+		{% endblock%}
+	</body>
+</html>

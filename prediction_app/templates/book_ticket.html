@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% block title %}Enter Passengers Details{% endblock %}
+{% block content %}
+<table id="query_table">
+	<tr>
+		<th>Airline</th>
+		<td>{{ token.airline }}</td>
+		<th>Date of booking</th>
+		<td>{{ token.date_of_booking }}</td>
+	</tr>
+
+	<tr>
+		<th>From</th>
+		<td>{{ token.source }}</td>
+		<th>To</th>
+		<td>{{ token.destination }}</td>
+	</tr>
+
+	<tr>
+		<th>Number of stops</th>
+		<td>{{ token.no_stops }}</td>
+		<th>Duration</th>
+		<td>{{ token.duration }}</td>
+	</tr>
+
+</table>
+<table id="result_table">
+	<tr>
+		<th>Arrival time</th>
+		<td>{{ token.arrival_date }}</td>
+
+		<th>Flight fare (Rs)</th>
+		<td>{{ token.flight_fare }}</td>
+	</tr>
+
+	<tr>
+		<th>Date of Journey</th>
+		<td>{{ token.date_of_journey }}</td>
+
+		<th></th>		
+		<td></td>
+	</tr>
+</table>
+
+<h5 style="text-align: left; margin-top: 15px;">Fill Passengers details</h5>
+<br>
+<div id="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group label-floating">
+				<label class="control-label" style="font-weight: bold;">Name*</label>
+				<input type="text" class="form-control" id="name1" placeholder="John" style="text-transform:uppercase" required>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="form-group label-floating">
+				<label class="control-label" style="font-weight: bold;">Age*</label>
+				<input type="number"class="form-control" id="age1" placeholder="35" minlength="1" maxlength="3" required>
+			</div>			
+		</div>
+
+		<div class="col-md-4">
+			<div class="form-group label-floating">
+				<label class="control-label" style="font-weight: bold;">Aadhar Card No.*</label>
+				<input type="text" class="form-control" id="aadhar1" placeholder="789465423698" required>
+			</div>						
+		</div>
+	</div>
+</div>
+<div>
+	<button onclick="add_passenger();">Add</button>
+	<button onclick="continue_after();">Continue</button>
+</div>
+	
+{% endblock %}

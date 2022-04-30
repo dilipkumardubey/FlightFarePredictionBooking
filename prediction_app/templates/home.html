@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block head%}
+	{{ super() }}
+{% endblock %}
+{% block content %}
+
+<div>
+	<form id="search_flights_form" method="POST">
+		<table>
+			<thead>
+				<th>Airline</th>
+				<th>From</th>
+				<th>To</th>
+				<th>Date of journey</th>
+				<th>Number of stops</th>
+
+			</thead>
+
+			<tbody>
+				<tr>
+					<td><select id='airline' name='airline'></select></td>
+					<td><select id='source' name='source'></select></td>
+					<td><select id='destination' name='destination'></select></td>
+					<td><input type="date" name="date_of_journey" id="date_of_journey" value="2019-01-01" min="2018-01-01"></td>
+					<td><select id="no_stops" name="no_stops"></select></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div id="search_button">
+			<button type="submit" onsubmit="get_search_inputs();">Search</button>
+		</div>
+		
+	</form>	
+</div>
+
+
+<table id="search_flights_table">
+		<thead>
+			{% for column_name in column_name_list %}
+			<th>{{ column_name }}</th>
+			{% endfor %}
+		</thead>
+
+		<tbody>
+			{% for row in row_data %}
+			<tr id="row{{loop.index}}">
+				{% for col, row_ in zip(column_name_list, row) %}
+				<td>{{ row_ }}</td>
+				{% endfor %}
+
+				<td><button onclick="get_passengers_details(this);">Book</button></td>
+				<!-- <td><input type="button" value="button" onclick="getId(this)"></td> -->
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+<p id="test"></p>
+	
+
+<script type="text/javascript">print_airline('airline');</script>
+<script type="text/javascript">print_source('source');</script>
+<script type="text/javascript">print_destination('destination');</script>
+<script type="text/javascript">print_noStops('no_stops');</script>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<br><br>
+<div>
+	<h4>Thanks for booking from our app :)<h4>
+</div>
+<br><br>
+<div id="container" style="border: 3px solid; background-color: whitesmoke;">
+
+	<h2 style="text-align: center;">Ticket</h2>
+            
+	<table id="flight_table">
+	<h5>Flight Details</h5>
+	<tr>
+		<th>Ticket No</th> 
+	    <td>{{ ticket.ticket_number }}</td> 
+	    <th>Airline</th>  
+	    <td>{{ ticket.airline }}</td>
+	</tr>
+	<tr>      
+		<th>From</th>
+		<td>{{ ticket.source }}</td> 
+		<th>To</th>   
+		<td>{{ ticket.destination }}</td>
+	</tr>
+	<tr>      
+		<th>Date of Booking</th>
+		<td>{{ ticket.date_of_booking }}</td> 
+		<th>Date of Journey</th>   
+		<td>{{ ticket.date_of_journey }}</td>
+	</tr>
+	<tr>      
+		<th>E-Mail</th>
+		<td>{{ ticket.primary_email }}</td> 
+		<th>Mobile No.</th>   
+		<td>{{ ticket.mobile }}</td>
+	</tr>	  
+	</table>
+
+	
+	<table id="passenger_table">
+		<h5>Passengers Details</h5>
+		{% for name, age, aadhar in data_list %}		
+		<tr>
+		<th>{{ name }}</th>
+		<th>{{ age }}</th>
+		<th>{{ aadhar }}</th>	
+		</tr>
+
+		{% endfor %}
+	</table> 
+
+	
+	<table id="invoice_table">
+		<h5>Invoice Details</h5>
+		<tr>
+			<th>Flight Fare (1 person)</th>
+			<td>{{ invoice_table[0] }}</td>
+		</tr>
+		<tr>
+			<th>Number of persons</th>
+			<td>{{ invoice_table[1] }}</td>
+		</tr>
+		<tr>
+			<th>Amount (Rs)</th>
+			<td>{{ invoice_table[2] }}</td>
+		</tr>
+		<tr>
+			<th>GST({{ invoice_table[3]}}%)</th>
+			<td>{{ invoice_table[4] }}</td>
+		</tr>
+		<tr>
+			<th>Total Amount (Rs)</th>
+			<td>{{ invoice_table[5] }}</td>
+		</tr>	
+	</table>
+
+	<table id="payment_table">
+		<h5>Payment Details</h5>
+		<tr>
+			<th>Transaction No.</th>
+			<td>{{ ticket.transaction_no }}</td>
+		</tr>
+
+		<tr>
+			<th>Payment Date</th>
+			<td>{{ ticket.date_of_payment }}</td>
+		</tr>
+
+		<tr>
+			<th>Payment bank</th>
+			<td>{{ ticket.bank }}</td>
+		</tr>		
+	</table>
+
+    </div>
+
+    
+    <div>
+        <button onclick="download_ticket('{{ filename }}');">Download</button>
+        <button onclick="window.location.href='{{ url_for('home') }}'">Home</button>
+    </div>
+
+
+    <!-- <div>
+    	<embed src="sample_pdf.pdf" width="800px" height="2100px" />
+    </div> -->
+{% endblock %}

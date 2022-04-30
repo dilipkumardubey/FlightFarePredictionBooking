@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div style="border: 3px solid;">
+	 <table id="invoice_table">
+
+		<h5>Bill details</h5>
+
+		<tr>
+			<th>Flight fare (1 person)</th>
+			<td>{{ invoice_table[0] }}</td>
+		</tr>
+
+		<tr>
+			<th>Number of passengers</th>
+			<td>{{ invoice_table[1] }}</td>
+		</tr>
+
+		<tr>
+			<th>Amount</th>
+			<td>{{ invoice_table[2] }}</td>
+		</tr>
+
+		<tr>
+			<th>GST({{ invoice_table[3]}}%)</th>
+			<td>{{ invoice_table[4] }}</td>
+		</tr>
+		
+		<tr>
+			<th>Total Amount</th>
+			<td>{{ invoice_table[5] }}</td>
+		</tr>
+
+		<tr>
+			<td>
+				<p style="font-weight: bold;">Please scan this QR code or</p>
+				<p style="font-weight: bold;">click button below to pay</p>
+			</td>
+			<td><img src="{{invoice_table[6]}}" style="width: 256px;height: 256px;"></td>
+		</tr>		
+	</table>  
+</div>
+<br><br>
+<button onclick="go_to_make_payment_page();">Pay</button>
+
+{% endblock %}
